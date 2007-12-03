@@ -1,0 +1,10 @@
+---
+global:
+  name: Attribute-SubName
+releases:
+  - author: 'Marcel Gruenauer <marcel@cpan.org>'
+    changes:
+      - original version
+    date: 2007-12-03T21:59:25Z
+    tags: []
+    version: 0.01
