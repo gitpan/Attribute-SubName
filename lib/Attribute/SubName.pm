@@ -6,7 +6,7 @@ use Sub::Name;
 use base 'Attribute::Handlers';
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 sub UNIVERSAL::Name : ATTR(CODE) {
@@ -52,7 +52,7 @@ please use the C<attributesubname> tag.
 
 =head1 VERSION 
                    
-This document describes version 0.01 of L<Attribute::SubName>.
+This document describes version 0.02 of L<Attribute::SubName>.
 
 =head1 BUGS AND LIMITATIONS
 

@@ -6,6 +6,7 @@ all_from 'lib/Attribute/SubName.pm';
 perl_version '5.006';
 
 requires 'Attribute::Handlers';
+requires 'Sub::Name';
 
 build_requires 'Test::More' => '0.70';
 
