@@ -6,15 +6,19 @@ use Sub::Name;
 use base 'Attribute::Handlers';
 
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 sub UNIVERSAL::Name : ATTR(CODE) {
    my ($package, $symbol, $referent, $attr, $data, $phase) = @_;
-   my $name = "${package}::${data}";
-   subname $name => $referent;
-   no strict 'refs';
-   *{$name} = $referent;
+
+   $data = [ $data ] unless ref $data eq 'ARRAY';
+   for my $item (@$data) {
+       my $name = "${package}::${item}";
+       subname $name => $referent;
+       no strict 'refs';
+       *{$name} = $referent;
+    }
 }
 
 
@@ -52,7 +56,7 @@ please use the C<attributesubname> tag.
 
 =head1 VERSION 
                    
-This document describes version 0.02 of L<Attribute::SubName>.
+This document describes version 0.03 of L<Attribute::SubName>.
 
 =head1 BUGS AND LIMITATIONS
 
@@ -78,7 +82,7 @@ Marcel GrE<uuml>nauer, C<< <marcel@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007 by Marcel GrE<uuml>nauer
+Copyright 2007-2008 by Marcel GrE<uuml>nauer
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

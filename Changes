@@ -4,6 +4,13 @@ global:
 releases:
   - author: 'Marcel Gruenauer <marcel@cpan.org>'
     changes:
+      - set the version to 0.03
+      - accept attribute data as scalar and array ref now to please both Attribute::Handlers 0.78 and 0.79
+    date: 2008-02-29T14:18:53Z
+    tags: []
+    version: 0.03
+  - author: 'Marcel Gruenauer <marcel@cpan.org>'
+    changes:
       - set the version to 0.02
       - 'Makefile.PL: requires Sub::Name'
     date: 2007-12-03T23:15:40Z
