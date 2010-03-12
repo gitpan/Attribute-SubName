@@ -1,45 +1,43 @@
-package Attribute::SubName;
-
+use 5.006;
 use strict;
 use warnings;
+
+package Attribute::SubName;
+our $VERSION = '1.100710';
+# ABSTRACT: Naming anonymous subroutines via attributes
+
 use Sub::Name;
 use base 'Attribute::Handlers';
 
-
-our $VERSION = '0.03';
-
-
 sub UNIVERSAL::Name : ATTR(CODE) {
-   my ($package, $symbol, $referent, $attr, $data, $phase) = @_;
-
-   $data = [ $data ] unless ref $data eq 'ARRAY';
-   for my $item (@$data) {
-       my $name = "${package}::${item}";
-       subname $name => $referent;
-       no strict 'refs';
-       *{$name} = $referent;
+    my ($package, $symbol, $referent, $attr, $data, $phase) = @_;
+    $data = [$data] unless ref $data eq 'ARRAY';
+    for my $item (@$data) {
+        my $name = "${package}::${item}";
+        subname $name => $referent;
+        no strict 'refs';
+        *{$name} = $referent;
     }
 }
-
-
 1;
 
 
 __END__
-
-
+=pod
 
 =head1 NAME
 
 Attribute::SubName - Naming anonymous subroutines via attributes
 
+=head1 VERSION
+
+version 1.100710
+
 =head1 SYNOPSIS
 
     use Attribute::SubName;
-
-    my $coderef = sub :Name(foo) { ... };
-
-    print foo(...);
+    my $coderef = sub :Name(foo) { print "got: $_\n"; };
+    print foo("hi");
 
 =head1 DESCRIPTION
 
@@ -49,44 +47,39 @@ that name in stack traces (cf. L<Carp>). The naming is done with L<Sub::Name>.
 Additionally, the attribute also installs the newly named subroutine in the
 proper glob slot so you can refer to it by name.
 
-=head1 TAGS
+=head1 INSTALLATION
 
-If you talk about this module in blogs, on del.icio.us or anywhere else,
-please use the C<attributesubname> tag.
-
-=head1 VERSION 
-                   
-This document describes version 0.03 of L<Attribute::SubName>.
+See perlmodinstall for information and options on installing Perl modules.
 
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported.
 
-Please report any bugs or feature requests to
-C<<bug-attribute-subname@rt.cpan.org>>, or through the web interface at
-L<http://rt.cpan.org>.
-
-=head1 INSTALLATION
-
-See perlmodinstall for information and options on installing Perl modules.
+Please report any bugs or feature requests through the web interface at
+L<http://rt.cpan.org/Public/Dist/Display.html?Name=Attribute-SubName>.
 
 =head1 AVAILABILITY
 
 The latest version of this module is available from the Comprehensive Perl
-Archive Network (CPAN). Visit <http://www.perl.com/CPAN/> to find a CPAN
-site near you. Or see <http://www.perl.com/CPAN/authors/id/M/MA/MARCEL/>.
+Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
+site near you, or see
+L<http://search.cpan.org/dist/Attribute-SubName/>.
+
+The development version lives at
+L<http://github.com/hanekomu/Attribute-SubName/>.
+Instead of sending patches, please fork this project using the standard git
+and github infrastructure.
 
 =head1 AUTHOR
 
-Marcel GrE<uuml>nauer, C<< <marcel@cpan.org> >>
+  Marcel Gruenauer <marcel@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2007-2008 by Marcel GrE<uuml>nauer
+This software is copyright (c) 2007 by Marcel Gruenauer.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
-
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 

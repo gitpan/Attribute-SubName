@@ -1,24 +1,22 @@
----
-global:
-  name: Attribute-SubName
-releases:
-  - author: 'Marcel Gruenauer <marcel@cpan.org>'
-    changes:
-      - set the version to 0.03
-      - accept attribute data as scalar and array ref now to please both Attribute::Handlers 0.78 and 0.79
-    date: 2008-02-29T14:18:53Z
-    tags: []
-    version: 0.03
-  - author: 'Marcel Gruenauer <marcel@cpan.org>'
-    changes:
-      - set the version to 0.02
-      - 'Makefile.PL: requires Sub::Name'
-    date: 2007-12-03T23:15:40Z
-    tags: []
-    version: 0.02
-  - author: 'Marcel Gruenauer <marcel@cpan.org>'
-    changes:
-      - original version
-    date: 2007-12-03T21:59:25Z
-    tags: []
-    version: 0.01
+Revision history for Perl extension Attribute-SubName
+
+1.100710  2010-03-12 15:15:29 Europe/Vienna
+    - converted the distribution to Dist::Zilla-style
+
+0.04  Thu Jul 25 15:27:43 CEST 2008 (Marcel Gruenauer <marcel@cpan.org>)
+     - Changed dist style and Changes back to standard. People didn't like it -
+       the nail that sticks out gets hammered down.
+     - Added standard test files; this will also help with CPANTS.
+
+0.03  Thu, 29 May 2008 12:00:21 -0000 (Marcel Gruenauer <marcel@cpan.org>)
+     - set the version to 0.03
+     - accept attribute data as scalar and array ref now to please both
+       Attribute::Handlers 0.78 and 0.79
+     - .shipit: fixed svk.tagpattern
+
+0.02  Mon, 03 Dec 2007 23:15:40 -0000 (Marcel Gruenauer <marcel@cpan.org>)
+     - set the version to 0.02
+     - Makefile.PL: requires Sub::Name
+
+0.01  Mon, 03 Dec 2007 21:59:25 -0000 (Marcel Gruenauer <marcel@cpan.org>)
+     - original version

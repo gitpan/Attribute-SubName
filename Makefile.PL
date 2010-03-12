@@ -1,23 +1,45 @@
-use inc::Module::Install;
-include 'Module::AutoInstall';
 
-name 'Attribute-SubName';
-all_from 'lib/Attribute/SubName.pm';
-perl_version '5.006';
+use strict;
+use warnings;
 
-requires 'Attribute::Handlers';
-requires 'Sub::Name';
+ BEGIN { require 5.006; } 
 
-build_requires 'Test::More' => '0.70';
+use ExtUtils::MakeMaker 6.11;
 
-process_templates(
-    first_year => 2007,
-    rest_from  => "$ENV{HOME}/.mitlib/standard_pod",
-    start_tag  => '{%',
-    end_tag    => '%}',
-);
 
-use_standard_tests(without => 'pod_coverage');
-auto_install;
-auto_include;
-WriteAll;
+
+my %WriteMakefileArgs = (
+                       'test' => {
+                                   'TESTS' => 't/*.t'
+                                 },
+                       'NAME' => 'Attribute::SubName',
+                       'DISTNAME' => 'Attribute-SubName',
+                       'CONFIGURE_REQUIRES' => {
+                                                 'ExtUtils::MakeMaker' => '6.11'
+                                               },
+                       'AUTHOR' => 'Marcel Gruenauer <marcel@cpan.org>',
+                       'BUILD_REQUIRES' => {},
+                       'ABSTRACT' => 'Naming anonymous subroutines via attributes',
+                       'EXE_FILES' => [],
+                       'VERSION' => '1.100710',
+                       'PREREQ_PM' => {
+                                        'Test::More' => '0',
+                                        'Scalar::Util' => '0',
+                                        'Attribute::Handlers' => '0',
+                                        'English' => '0',
+                                        'File::Find' => '0',
+                                        'File::Temp' => '0',
+                                        'Sub::Name' => '0',
+                                        'Carp' => '0'
+                                      },
+                       'LICENSE' => 'perl'
+                     );
+
+
+delete $WriteMakefileArgs{LICENSE}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.31) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+
