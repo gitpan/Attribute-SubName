@@ -2,7 +2,7 @@ NAME
     Attribute::SubName - Naming anonymous subroutines via attributes
 
 VERSION
-    version 1.100710
+    version 1.101420
 
 SYNOPSIS
         use Attribute::SubName;

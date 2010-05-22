@@ -3,11 +3,13 @@ use strict;
 use warnings;
 
 package Attribute::SubName;
-our $VERSION = '1.100710';
+BEGIN {
+  $Attribute::SubName::VERSION = '1.101420';
+}
 # ABSTRACT: Naming anonymous subroutines via attributes
 
 use Sub::Name;
-use base 'Attribute::Handlers';
+use parent 'Attribute::Handlers';
 
 sub UNIVERSAL::Name : ATTR(CODE) {
     my ($package, $symbol, $referent, $attr, $data, $phase) = @_;
@@ -31,7 +33,7 @@ Attribute::SubName - Naming anonymous subroutines via attributes
 
 =head1 VERSION
 
-version 1.100710
+version 1.101420
 
 =head1 SYNOPSIS
 
